@@ -15,8 +15,7 @@
   --light-grayish-blue: hsl(210, 46%, 95%);
 
   //box-shadow
-  --bs: 0.1em 0.1em 0.6em rgba(0, 0, 0, 0.25),
-    0.11em 0.11em 0.1em rgba(0, 0, 0, 0.15);
+  --bs: 0 1em 2em rgba(0, 0, 0, 0.1);
 }
 
 @media (min-width: 824px) {
@@ -34,75 +33,14 @@
 
 body,
 p,
-a,
-ul,
-li {
+a {
   margin: 0;
   padding: 0;
   text-decoration: none;
 }
 
-li {
-  list-style-type: none;
-}
-
 .share-button:focus {
   outline: none;
-}
-
-//=============BASE STYLES (styles that doesn't change whatever the size of the screen)
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background: var(--light-grayish-blue);
-  min-height: 100vh;
-}
-
-.attribution a:hover {
-  opacity: 0.7;
-}
-.share-icons,
-.card {
-  border-radius: 10px;
-}
-
-.share.clicked {
-  fill: white;
-}
-
-.media-icon {
-  img {
-    transition: all 0.5s;
-  }
-  img:hover {
-    transform: scale(1.2);
-  }
-}
-
-//=============CONTAINERS
-.container {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 10vh 24px 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-@media (min-width: 400px) {
-  .container {
-    max-width: 400px;
-  }
-}
-
-@media (min-width: 824px) {
-  .container {
-    max-width: 840px;
-    padding: 50vh 24px 0;
-  }
 }
 
 //=============FONTS
@@ -138,15 +76,86 @@ h4 {
   color: var(--grayish-blue);
   letter-spacing: 4px;
 }
+
+//=============BASE STYLES (styles that doesn't change whatever the size of the screen)
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--light-grayish-blue);
+  min-height: 100vh;
+}
+
+.attribution a:hover {
+  opacity: 0.7;
+}
+.share-icons,
+.card {
+  border-radius: 10px;
+}
+
+.share.clicked {
+  fill: white;
+}
+
+.share-button {
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  background: var(--light-grayish-blue);
+}
+
+.share-button:hover {
+  box-shadow: 0 0 0 0.1em rgba(0, 0, 0, 0.1);
+}
+
+.media-icon {
+  img {
+    transition: all 0.5s;
+  }
+  img:hover {
+    transform: scale(1.2);
+  }
+}
+
+//=============mixins
+
+@mixin flex-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+//=============CONTAINERS
+.container {
+  @include flex-wrap;
+  height: 100vh;
+  padding: 10vh 24px 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (min-width: 400px) {
+  .container {
+    max-width: 400px;
+  }
+}
+
+@media (min-width: 824px) {
+  .container {
+    max-width: 840px;
+    padding: 50vh 24px 0;
+  }
+}
+
 //=============mobile styles
 
 .card {
+  @include flex-wrap;
   background: white;
-  width: 100%;
   min-height: 460px;
   height: auto;
-  display: flex;
-  flex-direction: column;
   overflow: hidden;
   box-shadow: var(--bs);
   .drawer {
@@ -158,9 +167,7 @@ h4 {
   }
 
   .grid-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @include flex-wrap;
   }
 
   .info {
@@ -173,10 +180,10 @@ h4 {
     }
   }
   .card-footer {
+    @include flex-wrap;
+    flex-direction: row;
     padding: 0 2rem;
-    display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 80px;
     position: relative;
     .person {
@@ -191,9 +198,6 @@ h4 {
     .share-button {
       width: 32px;
       height: 32px;
-      border-radius: 50%;
-      border: none;
-      background: var(--light-grayish-blue);
       svg {
         width: 15px;
         height: 13px;
@@ -201,9 +205,6 @@ h4 {
       .share-icons {
         display: none;
       }
-    }
-    .share-button:hover {
-      box-shadow: var(--bs);
     }
   }
   .card-footer.active {
@@ -266,6 +267,10 @@ a {
 @media screen and (min-width: 1200px) {
   .card {
     overflow: visible;
+    .drawer {
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
     .card-footer.active {
       background: white;
       .share-button {
