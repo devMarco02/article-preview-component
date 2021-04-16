@@ -20,7 +20,7 @@
 
 @media (min-width: 824px) {
   :root {
-    --fs-h2: 1.35rem;
+    --fs-h2: 1.4rem;
     --fs-h4: 15px;
     --fs-body: 14px;
   }
@@ -87,6 +87,18 @@ body {
   min-height: 100vh;
 }
 
+main {
+  width: 90vw;
+  margin: 0 auto;
+  padding-top: 10vh;
+  min-height: calc(100vh - 47.2px);
+}
+
+section {
+  margin: 0 auto;
+  // margin-top: 10vh;
+}
+
 .attribution a:hover {
   opacity: 0.7;
 }
@@ -138,31 +150,11 @@ body {
   width: 100%;
 }
 
-//=============CONTAINERS
-.container {
-  @include flex-wrap(column, space-between, unset);
-  height: 100vh;
-  padding: 10vh 24px 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-@media (min-width: 400px) {
-  .container {
-    max-width: 400px;
-  }
-}
-
-@media (min-width: 824px) {
-  .container {
-    max-width: 840px;
-    padding: 0 24px;
-  }
-}
-
 //=============mobile styles
 
 .card {
   @include flex-wrap(column, space-between, unset);
+  // margin-top: 10vh;
   background: white;
   min-height: 460px;
   height: auto;
@@ -181,7 +173,7 @@ body {
   }
 
   .info {
-    padding: 2.5rem 2.25rem 1.25rem;
+    padding: 2.5rem 2rem 1.25rem;
     h2 {
       margin-top: 0;
     }
@@ -242,14 +234,27 @@ a {
   color: hsl(228, 45%, 44%);
 }
 
+@media (min-width: 400px) {
+  section {
+    max-width: 400px;
+  }
+}
+
 //=============tablets
 
 @media screen and (min-width: 824px) {
+  main {
+    display: grid;
+    place-items: center;
+    padding-top: 47.2px;
+  }
+
+  section {
+    max-width: 840px;
+  }
+
   .card {
-    position: relative;
-    top: 50%;
     min-height: 300px;
-    transform: translateY(-50%);
     display: grid;
     grid-template-columns: 40% 60%;
     .drawer {
