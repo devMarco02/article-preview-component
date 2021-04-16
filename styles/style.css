@@ -8,7 +8,7 @@
   --desaturated-dark-blue: hsl(214, 17%, 51%);
   --grayish-blue: hsl(212, 23%, 69%);
   --light-grayish-blue: hsl(210, 46%, 95%);
-  --bs: 0 1em 2em rgba(0, 0, 0, 0.1);
+  --bs: 0 1em 2em rgba(0, 0, 0, 0.05);
 }
 
 @media (min-width: 824px) {
