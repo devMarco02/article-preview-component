@@ -39,7 +39,7 @@ a {
   text-decoration: none;
 }
 
-.share-button:focus {
+.card__share-button:focus {
   outline: none;
 }
 
@@ -51,27 +51,25 @@ body {
   color: var(--desaturated-dark-blue);
 }
 
-h2 {
+.card__title {
   font-size: var(--fs-h2);
   font-weight: var(--fw-bold);
   color: var(--very-dark-grayish-blue);
 }
-h4 {
-  font-size: var(--fs-h4);
-}
 
-.name {
+.card__author-name {
+  font-size: var(--fs-h4);
   color: var(--very-dark-grayish-blue);
   font-weight: var(--fw-bold);
   margin: 0;
   margin-bottom: 2px;
 }
 
-.date {
+.card__date {
   color: var(--grayish-blue);
 }
 
-.share-text {
+.card__share-text {
   text-transform: uppercase;
   color: var(--grayish-blue);
   letter-spacing: 4px;
@@ -90,28 +88,23 @@ body {
 main {
   width: 90vw;
   margin: 0 auto;
-  padding-top: 10vh;
   min-height: calc(100vh - 47.2px);
 }
 
 section {
   margin: 0 auto;
-  // margin-top: 10vh;
 }
 
-.attribution a:hover {
-  opacity: 0.7;
-}
-.share-icons,
+.card__share-links,
 .card {
   border-radius: 10px;
 }
 
-.share.clicked {
+.card__share-icon--active {
   fill: white;
 }
 
-.share-button {
+.card__share-button {
   cursor: pointer;
   border-radius: 50%;
   border: none;
@@ -120,24 +113,29 @@ section {
   min-height: 30px;
   max-width: 30px;
   min-width: 30px;
-  svg {
+  &__share-icon {
     width: 15px;
     height: 13px;
   }
-}
-
-.share-button:hover {
-  box-shadow: 0 0 0 0.1em rgba(0, 0, 0, 0.1);
-}
-
-.media-icon {
-  display: inline-block;
-  img {
-    transition: all 0.5s;
+  &:hover,
+  &:focus {
+    box-shadow: 0 0 0 0.1em rgba(0, 0, 0, 0.1);
   }
-  img:hover {
+}
+
+.card__media-link {
+  display: inline-block;
+}
+
+.card__media-icon {
+  transition: all 0.5s;
+  &:hover {
     transform: scale(1.2);
   }
+}
+
+.attribution__link:hover {
+  opacity: 0.7;
 }
 
 //=============mixins
@@ -152,15 +150,18 @@ section {
 
 //=============mobile styles
 
+main {
+  padding-top: 10vh;
+}
+
 .card {
   @include flex-wrap(column, space-between, unset);
-  // margin-top: 10vh;
   background: white;
   min-height: 460px;
   height: auto;
   overflow: hidden;
   box-shadow: var(--bs);
-  .drawer {
+  &__img {
     background-position: top -16px center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -168,48 +169,53 @@ section {
     height: 200px;
   }
 
-  .grid-right {
+  &__body {
     @include flex-wrap(column, space-between, unset);
   }
 
-  .info {
+  &__content {
     padding: 2.5rem 2rem 1.25rem;
-    h2 {
-      margin-top: 0;
-    }
-    p {
-      line-height: 1.25rem;
-    }
   }
-  .card-footer {
+
+  &__title {
+    margin-top: 0;
+  }
+  p {
+    line-height: 1.25rem;
+  }
+
+  &__footer {
     @include flex-wrap(row, space-between, center);
     padding: 0 2rem;
     height: 80px;
     position: relative;
     border-bottom-right-radius: 10px;
-    .person {
-      @include flex-wrap(row, unset, center);
-      img {
-        max-width: 40px;
-        border-radius: 50%;
-        margin-right: 1rem;
-      }
-    }
-    .share-button {
-      background: var(--light-grayish-blue);
-      margin-top: 7px;
-      .share-icons {
-        display: none;
-      }
+    &--active {
+      background: var(--very-dark-grayish-blue);
     }
   }
 
-  .card-footer.active {
-    background: var(--very-dark-grayish-blue);
-    .share-button {
+  &__person {
+    @include flex-wrap(row, unset, center);
+  }
+
+  &__person-img {
+    max-width: 40px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  &__share-button {
+    background: var(--light-grayish-blue);
+    margin-top: 7px;
+    &--active {
       background: var(--desaturated-dark-blue);
     }
-    .share-icons {
+  }
+
+  &__share-links {
+    display: none;
+    &--active {
       background: var(--very-dark-grayish-blue);
       width: 70%;
       height: 100%;
@@ -229,10 +235,12 @@ section {
   font-size: 11px;
   text-align: center;
   padding: 1rem;
+  &__link {
+    color: hsl(228, 45%, 44%);
+  }
 }
-a {
-  color: hsl(228, 45%, 44%);
-}
+
+//=========================media queries
 
 @media (min-width: 400px) {
   section {
@@ -257,36 +265,38 @@ a {
     min-height: 300px;
     display: grid;
     grid-template-columns: 40% 60%;
-    .drawer {
+    &__img {
       height: 100%;
       background-position: left center;
     }
 
-    .info {
+    &__content {
       padding: 3rem 3rem 1.5rem;
     }
-    .card-footer {
+    &__footer {
       padding: 0 3rem;
       align-items: flex-start;
+      &--active {
+        background: white;
+      }
     }
-    .card-footer.active {
-      background: white;
-      .share-button {
-        position: relative;
-        svg {
-          transform: translateY(50%);
-        }
+
+    &__share-button--active {
+      position: relative;
+      svg {
+        transform: translateY(50%);
       }
-      .share-icons {
-        position: relative;
-        padding: 1.25rem 32px;
-        background: var(--very-dark-grayish-blue);
-        width: 300px;
-        height: auto;
-        top: -80px;
-        left: -225px;
-      }
-      .share-icons::after {
+    }
+
+    &__share-links--active {
+      position: relative;
+      padding: 1.25rem 32px;
+      background: var(--very-dark-grayish-blue);
+      width: 300px;
+      height: auto;
+      top: -80px;
+      left: -225px;
+      &::after {
         content: "";
         position: absolute;
         left: 75%;
@@ -305,15 +315,13 @@ a {
 @media screen and (min-width: 1200px) {
   .card {
     overflow: visible;
-    .drawer {
+    &__img {
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
     }
-    .card-footer.active {
-      .share-icons {
-        left: -135px;
-      }
-      .share-icons::after {
+    &__share-links--active {
+      left: -135px;
+      &::after {
         left: 50%;
         transform: translateX(-50%);
         border-top: 1rem solid var(--very-dark-grayish-blue);

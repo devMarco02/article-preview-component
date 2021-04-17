@@ -24,13 +24,16 @@
     <main>
       <section>
         <article class="card">
+          <!-- card image -->
           <div
-            class="drawer"
+            class="card__img"
             style="background-image: url('./images/drawers.jpg')"
           ></div>
-          <div class="grid-right">
-            <div class="info">
-              <h2>
+
+          <!-- card body -->
+          <div class="card__body">
+            <div class="card__content">
+              <h2 class="card__title">
                 Shift the overall look and feel by adding these wonderful
                 touches to furniture in your home
               </h2>
@@ -40,33 +43,54 @@
                 to help you make any room feel complete.
               </p>
             </div>
-            <footer class="card-footer">
-              <div class="person">
-                <img src="./images/avatar-michelle.jpg" alt="Michelle" />
-                <div class="author-info">
-                  <h4 class="name">Michelle Appleton</h4>
-                  <p class="date">28 Jun 2020</p>
+
+            <!-- card footer -->
+            <footer class="card__footer">
+              <div class="card__person">
+                <img
+                  class="card__person-img"
+                  src="./images/avatar-michelle.jpg"
+                  alt="Michelle"
+                />
+                <div class="card__author-info">
+                  <h4 class="card__author-name">Michelle Appleton</h4>
+                  <p class="card__date">28 Jun 2020</p>
                 </div>
               </div>
-              <button class="share-button">
+
+              <button class="card__share-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="13">
                   <path
                     id="share"
-                    class="share"
+                    class="card__share-icon"
                     fill="#6E8098"
                     d="M15 6.495L8.766.014V3.88H7.441C3.33 3.88 0 7.039 0 10.936v2.049l.589-.612C2.59 10.294 5.422 9.11 8.39 9.11h.375v3.867L15 6.495z"
                   />
                 </svg>
-                <div class="share-icons">
-                  <span class="share-text">share</span>
-                  <a class="media-icon fb-btn">
-                    <img src="./images/icon-facebook.svg" alt="facebook" />
+
+                <!-- social media links -->
+                <div class="card__share-links">
+                  <span class="card__share-text">share</span>
+                  <a class="card__media-link card__media-link--fb">
+                    <img
+                      class="card__media-icon"
+                      src="./images/icon-facebook.svg"
+                      alt="facebook"
+                    />
                   </a>
-                  <a class="media-icon twitter-btn">
-                    <img src="./images/icon-twitter.svg" alt="twitter" />
+                  <a class="card__media-link card__media-link--twitter">
+                    <img
+                      class="card__media-icon"
+                      src="./images/icon-twitter.svg"
+                      alt="twitter"
+                    />
                   </a>
-                  <a class="media-icon pinterest-btn">
-                    <img src="./images/icon-pinterest.svg" alt="pinterest" />
+                  <a class="card__media-link card__media-link--pinterest">
+                    <img
+                      class="card__media-icon"
+                      src="./images/icon-pinterest.svg"
+                      alt="pinterest"
+                    />
                   </a>
                 </div>
               </button>
@@ -76,11 +100,15 @@
       </section>
     </main>
 
+    <!-- footer -->
     <footer class="attribution">
       Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+      <a
+        class="attribution__link"
+        href="https://www.frontendmentor.io?ref=challenge"
+        target="_blank"
         >Frontend Mentor</a
-      >. Coded by <a href="#">Marco Alpay</a>.
+      >. Coded by <a class="attribution__link" href="#">Marco Alpay</a>.
     </footer>
 
     <!-- scripts -->
